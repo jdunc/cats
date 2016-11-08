@@ -25,7 +25,9 @@ $(document).ready(function(){
       for (var i = 0; i < jsonResponse['#document'].response.data.images.image.length; i++) {
         // console.log(jsonResponse['#document'].response.data.images.image[i].url);
         // currentURLS.push(jsonResponse['#document'].response.data.images.image[i].url);
-        var catElement =`<img src=${jsonResponse['#document'].response.data.images.image[i].url} class="newCatPics" />`;
+        var catURL = 'http://' + jsonResponse['#document'].response.data.images.image[i].url.slice(10,
+        jsonResponse['#document'].response.data.images.image[i].url.length);
+        var catElement =`<img src=${catURL} class="newCatPics" />`;
         // $.get(jsonResponse['#document'].response.data.images.image[i].url, function(){})
         //   .success(function(){
             $grid.masonry()
