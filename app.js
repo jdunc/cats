@@ -14,6 +14,9 @@ $(document).ready(function(){
 `) //end of append action
   } //end of category for loop
   $('.categoryButtons').click(function(){
+    $('.newCatPics').each(function(){
+      $(this).remove();
+    })
     // console.log(this.id);
     $.get(`http://thecatapi.com/api/images/get?format=xml&results_per_page=20&category=${this.id}`, function(){})
     .done(function(doc){
@@ -25,14 +28,19 @@ $(document).ready(function(){
       for (var i = 0; i < jsonResponse['#document'].response.data.images.image.length; i++) {
         // console.log(jsonResponse['#document'].response.data.images.image[i].url);
         // currentURLS.push(jsonResponse['#document'].response.data.images.image[i].url);
-        var catElement =`<img src=${jsonResponse['#document'].response.data.images.image[i].url} class="newCatPics" />`;
+        var catURL = 'http://' + jsonResponse['#document'].response.data.images.image[i].url.slice(10,
+        jsonResponse['#document'].response.data.images.image[i].url.length);
+        var catElement =`<img src=${catURL} class="newCatPics" />`;
         // $.get(jsonResponse['#document'].response.data.images.image[i].url, function(){})
         //   .success(function(){
             $grid.masonry()
               .append( catElement )
               .masonry( 'appended', catElement )
               // layout
-              .masonry();
+              // .masonry();
+//               $grid.imagesLoaded().progress( function() {
+//   $grid.masonry('layout');
+// });
           // })
       }
 
