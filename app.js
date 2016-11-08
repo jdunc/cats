@@ -14,6 +14,9 @@ $(document).ready(function(){
 `) //end of append action
   } //end of category for loop
   $('.categoryButtons').click(function(){
+    $('.newCatPics').each(function(){
+      $(this).remove();
+    })
     // console.log(this.id);
     $.get(`http://thecatapi.com/api/images/get?format=xml&results_per_page=20&category=${this.id}`, function(){})
     .done(function(doc){
@@ -34,7 +37,10 @@ $(document).ready(function(){
               .append( catElement )
               .masonry( 'appended', catElement )
               // layout
-              .masonry();
+              // .masonry();
+//               $grid.imagesLoaded().progress( function() {
+//   $grid.masonry('layout');
+// });
           // })
       }
 
