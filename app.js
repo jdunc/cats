@@ -10,7 +10,7 @@ $(document).ready(function(){
 });
   for (var i = 0; i < categories.length; i++) {
     $("#categoryButtons").append(
-      `<a class="btn btn-default categoryButtons" role="button" id="${categories[i]}">${categories[i]}</a>
+      `<a class="btn btn-default categoryButtons" role="button" id="${categories[i]}" >${categories[i]}</a>
 `) //end of append action
   } //end of category for loop
   $('.categoryButtons').click(function(){
@@ -30,9 +30,12 @@ $(document).ready(function(){
         // currentURLS.push(jsonResponse['#document'].response.data.images.image[i].url);
         var catURL = 'http://' + jsonResponse['#document'].response.data.images.image[i].url.slice(10,
         jsonResponse['#document'].response.data.images.image[i].url.length);
-        var catElement =`<img src=${catURL} class="newCatPics" />`;
+        var catElement =`<img src=${catURL} class="newCatPics" data-toggle="modal" data-target="#myModal"/>`;
         // $.get(jsonResponse['#document'].response.data.images.image[i].url, function(){})
         //   .success(function(){
+
+//
+
             $grid.masonry()
               .append( catElement )
               .masonry( 'appended', catElement )
@@ -45,10 +48,22 @@ $(document).ready(function(){
       }
 
 
-
+      $('.newCatPics').click(function(){
+        var src = $(this).attr('src');
+        console.log(src);
+        $('#modalPic').html(`<img src="${src}" style="width:100%"/>`);
+      });
     }); // end of $.get
   }) //end of click function
 
+
+  $('#modal').on('show.bs.modal', function () {
+         $(this).find('.modal-body').css({
+                width:'auto', //probably not needed
+                height:'auto', //probably not needed
+                'max-height':'100%'
+         });
+  });
 
 
 

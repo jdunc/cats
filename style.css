@@ -9,8 +9,29 @@ img{
   /*border: 2px solid hsla(0, 0%, 0%, 0.5);*/
   margin: 5px;
 }
+h1{
+  text-shadow: 1px 1px white;
+}
+p{
+  text-shadow: 1px 1px white;
+}
+h2{
+  text-align: center;
+}
+.modal-content{
+  width: auto;
+  height: auto;
+}
 /*#catPics{
   height:50vh;
   width:auto;
   overflow:auto;
 }*/
+#catPics{
+  background-color:green;
+  height:80px;
+  width:50vw;;
+}
+.jumbotron{
+  background-image: url('https://img1.etsystatic.com/044/0/8245666/il_fullxfull.560552887_t54p.jpg');
+}
